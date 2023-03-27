@@ -207,7 +207,7 @@ public class LSPApplication {
             File curProfileFile = new File(profileDir, splitName == null ? "primary.prof" : splitName + ".split.prof").getAbsoluteFile();
             Log.d(TAG, "Processing " + curProfileFile.getAbsolutePath());
             try {
-                if (!curProfileFile.canWrite() && Files.size(curProfileFile.toPath()) == 0) {
+                if (!curProfileFile.canWrite() && (!curProfileFile.exists() || Files.size(curProfileFile.toPath()) == 0)) {
                     Log.d(TAG, "Skip profile " + curProfileFile.getAbsolutePath());
                     continue;
                 }
