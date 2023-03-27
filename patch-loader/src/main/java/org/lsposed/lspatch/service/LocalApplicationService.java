@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.zip.ZipFile;
 
@@ -58,8 +59,8 @@ public class LocalApplicationService extends ILSPApplicationService.Stub {
     }
 
     @Override
-    public IBinder requestModuleBinder(String name) {
-        return null;
+    public List<Module> getLegacyModulesList() {
+        return Collections.emptyList();
     }
 
     @Override
@@ -70,11 +71,6 @@ public class LocalApplicationService extends ILSPApplicationService.Stub {
     @Override
     public String getPrefsPath(String packageName) {
         return new File(Environment.getDataDirectory(), "data/" + packageName + "/shared_prefs/").getAbsolutePath();
-    }
-
-    @Override
-    public Bundle requestRemotePreference(String packageName, int userId, IBinder callback) {
-        return null;
     }
 
     @Override

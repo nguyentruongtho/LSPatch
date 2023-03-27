@@ -84,8 +84,8 @@ public class RemoteApplicationService implements ILSPApplicationService {
     }
 
     @Override
-    public IBinder requestModuleBinder(String name) {
-        return service == null ? null : service.asBinder();
+    public List<Module> getLegacyModulesList() throws RemoteException {
+        return service == null ? new ArrayList<>() : service.getLegacyModulesList();
     }
 
     @Override
@@ -96,11 +96,6 @@ public class RemoteApplicationService implements ILSPApplicationService {
     @Override
     public String getPrefsPath(String packageName) {
         return new File(Environment.getDataDirectory(), "data/" + packageName + "/shared_prefs/").getAbsolutePath();
-    }
-
-    @Override
-    public Bundle requestRemotePreference(String packageName, int userId, IBinder callback) throws RemoteException {
-        return service == null ? null : service.requestRemotePreference(packageName, userId, callback);
     }
 
     @Override
